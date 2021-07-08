@@ -75,7 +75,7 @@ def scrape():
     # Find all the results for the Hemispheres
     results = browser.find_by_tag("a.product-item h3")
 
-    for item in range(len(results)):
+    for item in range(len(results)-1):
         hemispheres = {}
 
         # Find the elements in the loop by clicking
@@ -99,3 +99,16 @@ def scrape():
     
     # Quit the browser after scraping
     browser.quit()
+
+    return_dict = {
+        "title": news_title,
+        "paragraph": news_p,
+        "image_url": featured_image_url,
+        "mars_table": html_table,
+        "hemispheres": hemisphere_image_urls
+    }
+
+    return return_dict
+
+if __name__ == "__main__":
+    app.run(debug=True)
