@@ -16,18 +16,53 @@
             <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Get Mars Data!</a></p>
         </div>
     </div>
-<!-- NASA Mars News -->
-<div class="container">
-    <div class="row" id="mars-news">
-        <div class="media">
-            <div class="media-body">
-                <h2>Latest Mars News</h2>
-                <h3>{{ mars.title }}</h3>
-                <p>{{ mars.paragraph }}</p>
+    <!-- NASA Mars News -->
+    <div class="container">
+        <div class="row" id="mars-news">
+            <div class="media">
+                <div class="media-body">
+                    <h2>Latest Mars News</h2>
+                    <h4>{{ mars.title }}</h4>
+                    <p>{{ mars.paragraph }}</p>
+                </div>
             </div>
         </div>
     </div>
-</div> 
+    <!-- JPL Mars Space Images - Featured Image -->
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-lg-8 col-md-8 col-sm-12" id="mars-featured-image">
+                <h2>Featured Mars Image</h2>
+                <img src="{{ mars.image_url }}" class="img-responsive" style="max-width:100%; max-height: auto;"
+                    alt="Mars Featured Image" />
+            </div>
+
+            <div class="col" id="mars-facts">
+                <div class="col-md-4">
+                    <h4>Mars Facts</h4>
+                    {{ mars.mars_table | safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Mars Hemispheres -->
+    <div class="row" id="mars-hemispheres">
+        <div class="col-md-12">
+            <h3>
+                <center>Mars Hemispheres</center>
+            </h3>
+            {% for hemisphere in mars.hemispheres %}
+            <div class="col-md-3">
+                <div class="thumbnail">
+                    <img src="{{ hemisphere.img_url }}">
+                    <h3>{{ hemisphere.title }}</h3>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
